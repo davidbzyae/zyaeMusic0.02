@@ -112,7 +112,7 @@ router.all("/loadSong/", (req, res) => {
           "ba",
           "-x",
           "-o",
-          __dirname + `/assets/tracks/${song_id}.mp3`,
+          __dirname + `/assets/tracks/${song_id}.mp3`, andrew is stupid
           "--audio-format",
           "mp3",
           song_id,
