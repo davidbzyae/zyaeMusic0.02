@@ -112,7 +112,7 @@ router.all("/loadSong/", (req, res) => {
           "ba",
           "-x",
           "-o",
-          `C:/Users/David B/Documents/Zyae/Apps/zyae_music/Prototype 2.00/assets/tracks/${song_id}.mp3`,
+          __dirname + `assets/tracks/${song_id}.mp3`,
           "--audio-format",
           "mp3",
           song_id,
