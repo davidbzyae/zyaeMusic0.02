@@ -1,0 +1,144 @@
+@import "../../../utilities/variables";
+
+.search_bar {
+  position: relative;
+  z-index: 2;
+
+  margin: 20px;
+  padding: 10px;
+
+  width: calc(100vw - 40px);
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  font-size: 14px;
+  background-color: lighten($backgroundColor, 10%);
+  border-radius: 3px;
+
+  i {
+    font-size: 16px;
+    opacity: 0.5;
+  }
+
+  input {
+    width: calc(100% - 50px);
+
+    background: none;
+    border: none;
+    outline: none;
+
+    font-size: 16px;
+    color: $textColor;
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: red;
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: red;
+    }
+  }
+
+  .xmark {
+    position: absolute;
+    right: -5px;
+
+    height: 42px;
+    width: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+  }
+}
+
+.unloadedBrowseContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: calc(100vh - 90px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .large_music_logo {
+    font-size: 100px;
+    color: lighten($backgroundColor, 5%);
+  }
+}
+
+.loadedBrowseContent {
+  .search_results {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .result {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  h2 {
+    margin: 0 20px;
+  }
+}
+
+.top_result {
+  margin: 0 20px;
+
+  width: calc(100% - 40px);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 3px;
+  overflow: hidden;
+
+  > img {
+    flex: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 3px;
+  }
+
+  p {
+    width: calc(100%);
+
+    font-size: 14px;
+    min-width: 0;
+  }
+  .result_sub {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0.7;
+  }
+
+  .song_options {
+    flex: none;
+    flex-shrink: 0;
+    margin-left: auto;
+    min-width: 0;
+  }
+
+  &.artist {
+    > img {
+      border-radius: 50%;
+    }
+  }
+  &.album {
+  }
+  &.song {
+  }
+}

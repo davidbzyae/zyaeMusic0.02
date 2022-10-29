@@ -1,0 +1,47 @@
+@import "../../../utilities/variables";
+
+$spinner-color: lighten($backgroundColor, 50%) !default;
+
+.spinner {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+
+  //   background-color: #20242b;
+}
+
+.spinner_blade {
+  position: absolute;
+  top: 0.66em;
+  left: 0.44em;
+
+  width: 0.115em;
+  height: 0.34em;
+  border-radius: 0.5em;
+  background-color: transparent;
+  transform-origin: center -0.16em;
+  animation: spinner-fade 1s infinite linear;
+
+  $animation-delay: 0s;
+  $blade-rotation: 0deg;
+
+  @for $i from 1 through 8 {
+    &:nth-child(#{$i}) {
+      animation-delay: $animation-delay;
+      transform: rotate($blade-rotation);
+      $blade-rotation: $blade-rotation + 45;
+      $animation-delay: $animation-delay + 0.13;
+    }
+  }
+}
+
+@keyframes spinner-fade {
+  0% {
+    background-color: $spinner-color;
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}

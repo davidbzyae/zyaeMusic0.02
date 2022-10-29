@@ -1,0 +1,55 @@
+@import "../../utilities/variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: $textColor;
+  font-family: "Open Sans", sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  // min-height: calc(100% + env(safe-area-inset-top));
+  height: 100%;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
+
+  background-color: $backgroundColor;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-x: hidden;
+
+  ::placeholder {
+    color: darken($textColor, 30%);
+    opacity: 1;
+  }
+
+  :-ms-input-placeholder {
+    color: darken($textColor, 30%);
+  }
+
+  ::-ms-input-placeholder {
+    color: darken($textColor, 30%);
+  }
+}
+
+.content {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: row;
+}
+
+main {
+  .filler_elem {
+    position: relative;
+    height: $bottomBarBuffer;
+    width: 100%;
+  }
+}

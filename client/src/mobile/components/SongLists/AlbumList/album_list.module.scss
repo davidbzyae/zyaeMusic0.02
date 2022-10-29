@@ -1,0 +1,75 @@
+@import "../../../../utilities/variables";
+
+.unavailable {
+  opacity: 0.5;
+}
+
+.song_list {
+  width: 100vw;
+
+  padding: 0 20px;
+
+  display: flex;
+  flex-direction: column;
+  .song_list_entry {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    p {
+      width: 25px;
+
+      display: flex;
+      justify-content: center;
+
+      font-size: 14px;
+    }
+
+    .song_info {
+      width: calc(100% - 60px);
+
+      font-size: 14px;
+
+      .song_title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .song_artists {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        opacity: 0.7;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        img {
+          height: 15px;
+          width: 15px;
+          filter: brightness(100%) contrast(0%);
+        }
+      }
+    }
+
+    .song_options {
+      margin-left: auto;
+      font-size: 16px;
+    }
+  }
+
+  .seperator {
+    margin: 7.5px 0;
+    margin-left: auto;
+
+    height: 1px;
+    width: 80%;
+
+    display: block;
+
+    background: lighten($backgroundColorOpaque, 15%);
+  }
+}

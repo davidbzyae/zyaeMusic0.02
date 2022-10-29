@@ -1,0 +1,33 @@
+@import "../../../utilities/variables";
+
+.loader {
+  height: calc(100vh - $bottomBarBuffer);
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    height: 20px;
+    width: 20px;
+    background-color: lighten($backgroundColor, 30%);
+    border-radius: 50%;
+    margin: 3px;
+
+    animation: loader 0.5s infinite alternate;
+  }
+  div:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  div:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}
+
+@keyframes loader {
+  to {
+    opacity: 0.1;
+    transform: translateY(-15px) scale(0.7);
+  }
+}

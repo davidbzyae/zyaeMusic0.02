@@ -1,0 +1,44 @@
+// mobile
+@import "../../../../utilities/variables";
+
+.navbar_container {
+  height: $navBarHeight;
+
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: center;
+
+  transition: 0.5s;
+
+  &.expanded {
+    margin-top: 0;
+    height: 0px;
+    opacity: 0;
+  }
+}
+
+.links {
+  position: relative;
+
+  width: 85%;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  .item_link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    opacity: 0.6;
+  }
+  .item_link > i {
+    font-size: 22px;
+  }
+  .bold {
+    @extend .item_link;
+    opacity: 1;
+  }
+}

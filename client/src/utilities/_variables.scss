@@ -1,0 +1,16 @@
+$backgroundColor: #171b1d;
+$backgroundColorOpaque: #161b1d80;
+$textColor: #ffffff;
+$zyaePurple: #9000ff;
+$zyaeBlue: #3d60ff;
+
+$bottomBarBuffer: 200px;
+$navBarHeight: 75px;
+
+$envPaddingTop: env(safe-area-inset-top);
+$envPaddingRight: env(safe-area-inset-right);
+$envPaddingBottom: env(safe-area-inset-bottom);
+$envPaddingLeft: env(safe-area-inset-left);
+
+$envPaddingAll: env(safe-area-inset-top) env(safe-area-inset-right)
+  env(safe-area-inset-bottom) env(safe-area-inset-left);

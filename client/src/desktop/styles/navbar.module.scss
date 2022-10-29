@@ -1,0 +1,52 @@
+// browser
+@import "../../utilities/variables";
+
+.navbar_container {
+  padding: 35px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  height: 100vh;
+  width: 200px;
+  background-color: lighten($backgroundColor, 5%);
+}
+
+.user_info {
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(315deg, $zyaePurple, $zyaeBlue);
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.links {
+  position: relative;
+
+  height: fit-content;
+  width: fit-content;
+
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 30px;
+
+  .item_link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    opacity: 0.6;
+    cursor: pointer;
+  }
+  .item_link > i {
+    font-size: 28px;
+  }
+  .bold {
+    @extend .item_link;
+    opacity: 1;
+  }
+}

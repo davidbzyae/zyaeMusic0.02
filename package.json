@@ -1,0 +1,25 @@
+{
+  "name": "prototype-2.01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./zyae_music.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "classnames": "^2.3.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "lockr": "^0.9.0-beta.0",
+    "mongoose": "^6.5.4",
+    "mongoose-immutable-plugin": "^1.0.3",
+    "node-youtube-music": "^0.7.0",
+    "python-shell": "^3.0.1",
+    "react-router-dom": "^6.4.2",
+    "ytdl-core": "^4.11.2"
+  }
+}

@@ -1,0 +1,20 @@
+.artist_array {
+  padding: 0 20px;
+
+  width: 100vw;
+  overflow: scroll;
+
+  display: flex;
+  gap: 20px;
+  .artist_entry {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    img {
+      height: 150px;
+      width: 150px;
+      border-radius: 150px;
+    }
+  }
+}
