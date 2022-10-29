@@ -13,8 +13,6 @@ const BottomBar = () => {
 
   const expandFunct = () => {
     setExpanded((prev) => !prev);
-    if (expanded) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "scroll";
   };
 
   return (
