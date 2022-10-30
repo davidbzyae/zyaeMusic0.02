@@ -34,6 +34,36 @@ const Player = ({ expandFunct, expanded }) => {
         process.env.REACT_APP_API_URL + "/tracks/" + song_data.song_id;
       setSongData(song_data);
       audio.play();
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: song_data.title,
+        artist: getArtistString(song_data.artists),
+        artwork: [
+          {
+            src: getCustomImgSize(song_data.thumbnail, 512, 512),
+            sizes: "512x512",
+          },
+          {
+            src: getCustomImgSize(song_data.thumbnail, 384, 384),
+            sizes: "384x384",
+          },
+          {
+            src: getCustomImgSize(song_data.thumbnail, 256, 256),
+            sizes: "256x256",
+          },
+          {
+            src: getCustomImgSize(song_data.thumbnail, 192, 192),
+            sizes: "192x192",
+          },
+          {
+            src: getCustomImgSize(song_data.thumbnail, 128, 128),
+            sizes: "128x128",
+          },
+          {
+            src: getCustomImgSize(song_data.thumbnail, 96, 96),
+            sizes: "96x96",
+          },
+        ],
+      });
     });
     window.addEventListener("loadingChange", () => {
       setLoading(LockrGet("loading"));
