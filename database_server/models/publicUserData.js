@@ -13,6 +13,7 @@ const PublicUserDataSchema = new Schema({
     immutable: true,
   },
   username: reqString,
+  password: reqString,
   liked_songs: [],
   playlists: [String],
   library: [String],

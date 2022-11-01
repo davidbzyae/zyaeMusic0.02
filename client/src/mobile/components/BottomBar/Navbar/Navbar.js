@@ -11,7 +11,11 @@ const Navbar = ({ expanded }) => {
 
   return (
     <div className={cx({ navbar_container: true, expanded: expanded })}>
-      <div className={styles.links}>
+      <div
+        className={cx({
+          links: true,
+        })}
+      >
         <div
           onClick={() => {
             navigate("/");
@@ -38,7 +42,7 @@ const Navbar = ({ expanded }) => {
         </div>
         <div
           onClick={() => {
-            navigate("/artist/UCRB-a6u9flpg0xuBqCf9QlQ");
+            navigate("/favorites");
           }}
           className={cx({
             item_link: true,

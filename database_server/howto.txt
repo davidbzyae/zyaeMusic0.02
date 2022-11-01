@@ -1,8 +1,13 @@
 User Data:
 
-get all user data
-get https://zyae.net/music/api/userData
-returns all user data
+authorize and get user data
+put https://zyae.net/music/api/userData
+returns user data
+
+{
+    "username": "username",
+    "password": "password"
+}
 
 get specific id user data
 get https://zyae.net/music/api/userData/{userid}

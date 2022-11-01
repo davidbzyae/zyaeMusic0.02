@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+const bcrypt = require("bcrypt");
+
 // userData
-const privateUserData = require("../models/privateUserData");
 const publicUserData = require("../models/publicUserData");
 
 // playlistData
@@ -16,10 +17,25 @@ const musicData = require("../models/musicData");
 
 // publicUserData routes
 
-// get all user data
-router.get("/", getAllUser, async (req, res) => {
-  res.json({ error: false, response: res.users });
-  // getting all publicUserData
+// // get all user data
+// router.get("/", getAllUser, async (req, res) => {
+//   res.json({ error: false, response: res.users });
+//   // getting all publicUserData
+// });
+
+// login authorization
+router.put("/", getAllUser, async (req, res) => {
+  const user = res.users.find((user) => user.username == req.body.username);
+  if (user) {
+    bcrypt.compare(req.body.password, user.password, (err, result) => {
+      if (err)
+        return res.status(500).json({ error: true, response: err.message });
+      if (result) res.json({ error: false, response: user });
+      else res.status(401).json({ error: true, response: "Unauthorized" });
+    });
+  } else {
+    res.status(401).json({ error: true, response: "Unauthorized" });
+  }
 });
 
 // get specific id user data
@@ -28,7 +44,7 @@ router.get("/:id", getOneUser, async (req, res) => {
 });
 
 // create new user
-router.post("/", getAllUser, async (req, res) => {
+router.post("/", getAllUser, (req, res) => {
   var userTaken = false;
   res.users.forEach((userObject) => {
     if (userObject.username == req.body.username) {
@@ -43,23 +59,23 @@ router.post("/", getAllUser, async (req, res) => {
   const id_string = new String("u" + Date.now());
 
   // create account data
-  const privateData = new privateUserData({
-    user_id: id_string,
-    password: req.body.password,
-  });
-
-  const publicData = new publicUserData({
-    user_id: id_string,
-    username: req.body.username,
-    liked_songs: [],
-    playlists: [],
-    recently_searched: [],
-  });
-
   try {
-    const newUserMusicData = await publicData.save();
-    const newUserAccountData = await privateData.save();
-    res.status(201).json({ error: false, response: newUserMusicData });
+    bcrypt.hash(req.body.password, 10, async (err, hash) => {
+      if (err)
+        return res.status(500).json({ error: true, response: err.message });
+
+      const publicData = new publicUserData({
+        user_id: id_string,
+        username: req.body.username,
+        password: hash,
+        liked_songs: [],
+        playlists: [],
+        recently_searched: [],
+      });
+
+      const newUserMusicData = await publicData.save();
+      res.status(201).json({ error: false, response: newUserMusicData });
+    });
   } catch (err) {
     res.status(400).json({ error: true, response: err.message });
   }
@@ -92,9 +108,6 @@ router.delete("/:id/", getOneUser, (req, res) => {
   const deleteAccount = async () => {
     try {
       await publicUserData.findOneAndDelete({
-        user_id: res.user.user_id,
-      });
-      await privateUserData.findOneAndDelete({
         user_id: res.user.user_id,
       });
       await playlistData.deleteMany({
@@ -470,9 +483,8 @@ router.delete("/:id/recentlyPlayed", getOneUser, async (req, res) => {
 
 async function getAllUser(req, res, next) {
   var users;
-  var search_object = req.body;
   try {
-    users = await publicUserData.find(search_object);
+    users = await publicUserData.find({});
   } catch (err) {
     res.status(500).json({ error: true, response: err.message });
   }

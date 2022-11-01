@@ -19,6 +19,7 @@ import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import ArtistPage from "./pages/ArtistPage/ArtistPage";
 import AlbumPage from "./pages/AlbumPage/AlbumPage";
 import PlaylistPage from "./pages/PlaylistPage/PlaylistPage";
+import LoginPage from "./pages/loginPage/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import InternalErrorPage from "./pages/ErrorPages/500x/InternalErrorPage";
 
@@ -29,25 +30,31 @@ import BottomBar from "./components/BottomBar/BottomBar";
 import ScrollToTop from "./helpers/ScrollToTop";
 
 const cx = classNames.bind(styles);
-
 const MobileApp = () => {
-  useNavigate.scrollRestoration = "manual";
+  const [userData, setUserData] = React.useState({
+    status: "unknown",
+  });
 
-  const [userData, setUserData] = React.useState({});
+  useNavigate.scrollRestoration = "manual";
 
   React.useEffect(() => {
     LockrSet("loading", false);
-    const options = {
-      url: process.env.REACT_APP_DB_URL + "userData/u1665450302950",
-      method: "GET",
-    };
-    axios(options)
-      .then((res) => {
-        setUserData(res.data.response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const user_id = LockrGet("user_id");
+
+    if (user_id) {
+      const options = {
+        url: process.env.REACT_APP_DB_URL + `userData/${user_id}`,
+        method: "GET",
+      };
+      axios(options)
+        .then((res) => {
+          LockrSet("user_data", res.data.response);
+          window.addEventListener("updateUserData");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   return (
@@ -59,6 +66,7 @@ const MobileApp = () => {
             <Route path="/browse" element={<BrowsePage />} />
             <Route path="/browse/:query" element={<BrowsePage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/artist/:artist_id" element={<ArtistPage />} />
             <Route path="/album/:album_id" element={<AlbumPage />} />
             <Route path="/playlist/:playlist_id" element={<PlaylistPage />} />

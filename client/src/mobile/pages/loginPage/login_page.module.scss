@@ -1,0 +1,123 @@
+@import "../../../utilities/variables";
+
+.content {
+  height: calc(100vh - $bottomBarBuffer);
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .toggle_form {
+    position: absolute;
+    bottom: $bottomBarBuffer;
+
+    color: lighten($backgroundColor, 50%);
+  }
+}
+
+.error_message {
+  margin-top: 5px;
+  color: $errColor;
+  font-size: 14px;
+}
+
+.interface_box {
+  position: relative;
+
+  height: fit-content;
+  width: 85vw;
+
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  .header_wrapper {
+    h2 {
+      color: lighten($backgroundColor, 80%);
+      font-size: 28px;
+    }
+    p {
+      margin-top: 10px;
+      font-size: 15px;
+      color: lighten($backgroundColor, 50%);
+    }
+  }
+}
+
+.interface_form {
+  form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    .input_wrapper {
+      width: 100%;
+
+      padding: 10px 13px;
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      background-color: lighten($backgroundColor, 5%);
+
+      border-radius: 5px;
+
+      &:focus-within {
+        background-color: lighten($backgroundColor, 10%);
+      }
+
+      i {
+        color: lighten($backgroundColor, 50%);
+      }
+
+      input {
+        height: 100%;
+        width: 100%;
+        background-color: transparent;
+        &::placeholder {
+          color: lighten($backgroundColor, 50%);
+        }
+      }
+    }
+
+    .button_wrapper {
+      position: relative;
+      margin-top: 20px;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 50px;
+      padding: 20px;
+      background: linear-gradient(315deg, #9000ff, #3d60ff);
+      border-radius: 100px;
+      cursor: pointer;
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: -0.01em;
+        background: linear-gradient(
+          315deg,
+          rgb(144, 0, 255, 0.4),
+          rgb(61, 96, 255, 0.4)
+        );
+        filter: blur(0.8em);
+        border-radius: 100px;
+        z-index: -1;
+      }
+
+      button {
+        background: transparent;
+        font-size: 15px;
+      }
+    }
+  }
+}

@@ -19,6 +19,7 @@ import getArtistString from "../../helpers/getArtistString";
 import getSearchSuggested from "../../helpers/getSearchSuggested";
 import getSearchData from "../../helpers/getSearchData";
 import playSong from "../../helpers/playSong";
+import axios from "axios";
 
 const cx = classNames.bind(styles);
 const BrowsePage = () => {
@@ -35,7 +36,9 @@ const BrowsePage = () => {
     LockrSet("last_query", update_query);
     setSearchQuery(update_query);
     navigate("/browse/" + update_query);
-    if (update_query !== "") handleSearch(update_query);
+    if (update_query !== "") {
+      handleSearch(update_query);
+    }
   };
 
   useEffect(() => {
@@ -260,6 +263,17 @@ const TopResult = ({ resultData, navigate }) => {
     <div
       key={data.videoId || data.browseId}
       onClick={() => {
+        console.log(data);
+        const pushSearchItem = {
+          item_type: data.resultType,
+          youtube_id: data.browseId,
+          item_title: data.artist || data.title,
+          thumbnail: data.thumbnails[0].url,
+          item_subInfo:
+            data.type ||
+            data.resultType.charAt(0).toUpperCase() + data.resultType.slice(1),
+        };
+        console.log(pushSearchItem);
         if (data.resultType !== "song")
           navigate(
             "/" + data.resultType + "/" + (data.videoId || data.browseId)

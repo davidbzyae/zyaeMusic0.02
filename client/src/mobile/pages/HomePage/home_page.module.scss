@@ -1,0 +1,9 @@
+@import "../../../utilities/variables";
+
+.content {
+  padding: 20px;
+
+  h2 {
+    color: lighten($backgroundColor, 90%);
+  }
+}

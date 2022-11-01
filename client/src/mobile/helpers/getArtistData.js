@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 
 import { get as LockrGet, set as LockrSet } from "lockr";

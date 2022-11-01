@@ -10,6 +10,16 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+input,
+select,
+textarea,
+button {
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
 body {
   // min-height: calc(100% + env(safe-area-inset-top));
   height: 100%;
